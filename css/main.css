@@ -814,6 +814,12 @@ img {
     transition: transform 0.3s ease;
 }
 
+.carousel-item a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
 .carousel-button {
     position: absolute;
     top: 50%;
@@ -1087,4 +1093,28 @@ img {
     .verse-box p {
         font-size: 0.9rem;
     }
+}
+
+.book-card a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.payment-icons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.payment-icons img {
+    height: 30px;
+    width: auto;
+    transition: transform 0.3s ease;
+    opacity: 1;
+}
+
+.payment-icons img:hover {
+    transform: scale(1.1);
+    opacity: 1;
 }
