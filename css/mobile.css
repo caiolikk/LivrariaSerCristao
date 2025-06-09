@@ -145,3 +145,187 @@
         max-width: 300px;
     }
 } 
+
+/* Estilos para dispositivos móveis */
+@media screen and (max-width: 768px) {
+    /* Header e Navegação */
+    .navbar {
+        padding: 0.5rem 1rem;
+    }
+
+    .logo {
+        max-width: 120px;
+    }
+
+    .search-container {
+        display: none;
+    }
+
+    .atacado-button {
+        display: none;
+    }
+
+    .hamburger-menu {
+        display: block;
+    }
+
+    /* Menu Overlay */
+    .menu-overlay {
+        width: 100%;
+        padding: 2rem 1rem;
+    }
+
+    .menu-links {
+        gap: 1rem;
+    }
+
+    .menu-links a {
+        font-size: 1.1rem;
+        padding: 0.8rem;
+    }
+
+    /* Container Principal */
+    .pdfs-container,
+    .main-container {
+        padding: 1rem;
+        margin: 1rem auto;
+    }
+
+    /* Seções de Conteúdo */
+    .license-section,
+    .books-section,
+    .content-section {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Títulos */
+    .license-title,
+    .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .license-subtitle,
+    .section-subtitle {
+        font-size: 1rem;
+    }
+
+    /* Footer */
+    .footer-content {
+        flex-direction: column;
+        gap: 2rem;
+        padding: 2rem 1rem;
+    }
+
+    .footer-section {
+        width: 100%;
+        text-align: center;
+    }
+
+    .social-icons {
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .payment-icons {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    /* Carrossel */
+    .carousel-container {
+        margin: 1rem 0;
+    }
+
+    .carousel-title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .carousel-item {
+        flex: 0 0 200px;
+    }
+
+    .carousel-item img {
+        height: 220px;
+    }
+
+    .carousel-button {
+        width: 35px;
+        height: 35px;
+        font-size: 1.1rem;
+    }
+
+    .carousel-button.prev {
+        left: 8px;
+    }
+
+    .carousel-button.next {
+        right: 8px;
+    }
+
+    .carousel-track {
+        padding: 0 1rem;
+        gap: 0.8rem;
+    }
+
+    /* Formulários */
+    .form-container {
+        padding: 1rem;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    textarea {
+        padding: 0.8rem;
+        font-size: 1rem;
+    }
+
+    .submit-button {
+        width: 100%;
+        padding: 1rem;
+        font-size: 1.1rem;
+    }
+
+    /* Links e Botões */
+    .social-icon {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    /* Ajustes específicos para telas muito pequenas */
+    @media screen and (max-width: 480px) {
+        .logo {
+            max-width: 100px;
+        }
+
+        .menu-links a {
+            font-size: 1rem;
+            padding: 0.6rem;
+        }
+
+        .carousel-item {
+            flex: 0 0 160px;
+        }
+
+        .carousel-item img {
+            height: 180px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+        }
+
+        .payment-icon {
+            width: 40px;
+            height: 40px;
+        }
+    }
+} 
