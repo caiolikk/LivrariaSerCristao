@@ -137,6 +137,39 @@
         .remove-button:hover {
             background-color: #cc0000;
         }
+
+        @media (max-width: 768px) {
+            .favorites-container {
+                padding: 0 1rem;
+                margin: 1.5rem auto;
+            }
+
+            .favorites-content {
+                padding: 1.5rem;
+                min-height: auto;
+            }
+
+            .books-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 1rem;
+                justify-content: center;
+            }
+
+            .book-card {
+                max-width: 200px;
+                margin: 0 auto;
+            }
+
+            .book-image-container {
+                padding-bottom: 130%;
+            }
+
+            .book-title {
+                font-size: 0.9rem;
+                max-width: 200px;
+            }
+        }
     </style>
 </head>
 <body>

@@ -36,6 +36,23 @@
             box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
         }
 
+        @media screen and (max-width: 768px) {
+            .login-container {
+                background-color: transparent;
+                box-shadow: none;
+                padding: 20px;
+            }
+
+            .login-form input[type="email"], 
+            .login-form input[type="password"] {
+                background-color: rgba(255, 255, 255, 0.8);
+            }
+
+            .login-form input:focus {
+                background-color: rgba(255, 255, 255, 0.9);
+            }
+        }
+
         .back-button {
             position: absolute;
             top: 20px;
