@@ -1,0 +1,147 @@
+/* Media Queries */
+@media (max-width: 768px) {
+    .container-doacoes {
+        margin: 1rem auto 0;
+    }
+
+    .secao-doacao {
+        padding: 1.5rem;
+        margin: 0 1rem;
+    }
+
+    .texto-missao {
+        flex-direction: column;
+    }
+
+    .citacao-biblia {
+        margin-top: 1rem;
+    }
+
+    .objetivos-missao {
+        grid-template-columns: 1fr;
+    }
+
+    .metodos-doacao {
+        grid-template-columns: 1fr;
+    }
+
+    .conteudo-rodape {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .secao-rodape {
+        width: 100%;
+    }
+
+    .icones-sociais, .icones-pagamento {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .container-busca {
+        display: none;
+    }
+
+    .botao-atacado {
+        display: none;
+    }
+
+    .container-logo {
+        height: 40px;
+    }
+
+    .container-busca {
+        position: static;
+        transform: none;
+        width: 100%;
+        margin-top: 1rem;
+    }
+} 
+
+@media (max-width: 900px) {
+    .payment-icons {
+        grid-template-columns: repeat(2, 1fr);
+        justify-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .payment-icons {
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+}
+
+/* Media queries para responsividade */
+@media (max-width: 768px) {
+    .footer-content {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .footer-section {
+        flex-basis: 100%;
+        text-align: center;
+    }
+
+    .social-icons, .payment-icons {
+        justify-content: center;
+    }
+    
+    .cards-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 100%;
+    }
+
+    .nav-container {
+        padding: 0 0.5rem;
+    }
+
+    .nav-links {
+        gap: 1rem;
+    }
+
+    .nav-link {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+    }
+
+    .atacado-button {
+        position: static;
+        transform: none;
+        margin: 1rem auto;
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-container {
+        padding: 1rem;
+    }
+
+    .search-container {
+        min-width: unset;
+    }
+
+    .nav-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .atacado-button {
+        width: 90%;
+        max-width: 300px;
+    }
+} 

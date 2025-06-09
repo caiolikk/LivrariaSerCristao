@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doações - LVSER CRISTÃO</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .container-doacoes {
+            max-width: 1200px;
+            margin: 2rem auto 0;
+            padding: 0;
+        }
+
+        .conteudo-doacoes {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .secao-doacao {
+            background: white;
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 0 2rem;
+        }
+
+        .cabecalho-secao {
+            text-align: left;
+            margin-bottom: 0;
+            padding-bottom: 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+        }
+
+        .cabecalho-secao h1 {
+            font-size: 2rem;
+            color: #333;
+            margin-top: 0;
+            font-weight: 700;
+            flex: 1;
+        }
+
+        .icone-secao {
+            font-size: 2.5rem;
+            color: #DB6262;
+            margin-bottom: 1rem;
+        }
+
+        .corpo-secao {
+            margin-top: 1rem;
+        }
+
+        .texto-missao {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        .texto-missao p {
+            flex: 1;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #333;
+            text-align: justify;
+        }
+
+        .citacao-biblia {
+            flex: 1;
+            background: linear-gradient(135deg, #DB6262 0%, #E88A8A 100%);
+            padding: 2rem;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            height: 100%;
+        }
+
+        .citacao-biblia p {
+            color: #fff;
+        }
+
+        .versiculo-doacao {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            font-style: italic;
+            color: #fff;
+        }
+
+        .versiculo-biblia {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: white;
+            text-align: left;
+            margin: 0;
+            font-style: italic;
+        }
+
+        .objetivos-missao {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+
+        .item-objetivo {
+            padding: 1.5rem;
+            background: #F8F8F8;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .item-objetivo:hover {
+            transform: translateY(-5px);
+        }
+
+        .item-objetivo i {
+            font-size: 2rem;
+            color: #DB6262;
+            margin-bottom: 1rem;
+        }
+
+        .item-objetivo h3 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .item-objetivo p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .metodos-doacao {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .metodo-doacao {
+            text-align: center;
+            padding: 2rem;
+            background: #F8F8F8;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .metodo-doacao:hover {
+            transform: translateY(-5px);
+        }
+
+        .icone-metodo {
+            font-size: 2.5rem;
+            color: #DB6262;
+            margin-bottom: 1rem;
+        }
+
+        .metodo-doacao h3 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .metodo-doacao p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .botao-doacao {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: #DB6262;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .botao-doacao:hover {
+            background: #C55555;
+        }
+
+        .conteudo-principal {
+            display: flex;
+            gap: 2rem;
+            align-items: stretch;
+            margin-bottom: 2rem;
+        }
+
+        .texto-principal {
+            flex: 1;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            height: 100%;
+        }
+
+        .texto-principal h1 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .texto-principal p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #333;
+            text-align: justify;
+            margin: 0;
+        } 
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo-container">
+                <img src="assets/logo-lv.png" alt="LVSER CRISTÃO" class="logo">
+            </div>
+            <div class="search-container">
+                <input type="text" class="search-bar" placeholder="PESQUISAR">
+                <button class="search-button"></button>
+            </div>
+            <button class="atacado-button">Compras no Atacado</button>
+            <button class="hamburger-menu" onclick="toggleMenu()"></button>
+        </nav>
+    </header>
+    <div class="menu-backdrop" id="menuBackdrop" onclick="closeMenu()"></div>
+    <div class="menu-overlay" id="menuOverlay">
+        <div class="menu-links">
+            <a href="index.html"><i class="fas fa-home"></i>Home</a>
+            <a href="pdfsgratis.html"><i class="fas fa-file-pdf"></i>PDF's Grátis</a>
+            <a href="doacoes.html"><i class="fas fa-hand-holding-heart"></i>Doações</a>
+            <a href="sobrenos.html"><i class="fas fa-info-circle"></i>Sobre Nós</a>
+            <div class="menu-separator"></div>
+            <a href="favoritos.html" class="favorites-button"><i class="fas fa-heart"></i>Favoritos</a>
+            <a href="login.html" class="login-button"><i class="fas fa-user"></i>Login</a>
+        </div>
+    </div>
+    <main class="container-doacoes">
+        <div class="conteudo-doacoes">
+            <section class="secao-doacao missao">
+                <div class="conteudo-principal">
+                    <div class="texto-principal">
+                        <h1>Faça parte da Nossa Missão</h1>
+                        <p>A Livraria Ser Cristão tem como objetivo principal disponibilizar conteúdo cristão de qualidade a preços acessíveis. Sua doação nos ajuda a continuar este trabalho e expandir nosso alcance.</p>
+                    </div>
+                    <div class="citacao-biblia">
+                        <p class="versiculo-doacao">"Cada um contribua segundo tiver proposto no coração, não com tristeza ou por necessidade; porque Deus ama a quem dá com alegria."</p>
+                        <p class="versiculo-biblia">2 Coríntios 9:7</p>
+                    </div>
+                </div>
+                <div class="objetivos-missao">
+                    <div class="item-objetivo">
+                        <i class="fas fa-book"></i>
+                        <h3>Novos Títulos</h3>
+                        <p>Adquirir novos títulos para nossa biblioteca</p>
+                    </div>
+                    <div class="item-objetivo">
+                        <i class="fas fa-file-pdf"></i>
+                        <h3>PDFs Gratuitos</h3>
+                        <p>Manter nossa plataforma de PDFs gratuitos</p>
+                    </div>
+                    <div class="item-objetivo">
+                        <i class="fas fa-users"></i>
+                        <h3>Melhorias</h3>
+                        <p>Investir em melhorias para melhor atender nossos leitores</p>
+                    </div>
+                    <div class="item-objetivo">
+                        <i class="fas fa-lightbulb"></i>
+                        <h3>Novos Projetos</h3>
+                        <p>Desenvolver novos projetos e iniciativas</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="secao-doacao metodos">
+                <div class="cabecalho-secao">
+                    <h2>Formas de Doação</h2>
+                </div>
+                <div class="metodos-doacao">
+                    <div class="metodo-doacao">
+                        <div class="icone-metodo">
+                            <i class="fas fa-qrcode"></i>
+                        </div>
+                        <h3>PIX</h3>
+                        <p>Transferência instantânea e sem taxas</p>
+                        <a href="#" class="botao-doacao">Doar via PIX</a>
+                    </div>
+                    <div class="metodo-doacao">
+                        <div class="icone-metodo">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <h3>Cartão de Crédito</h3>
+                        <p>Pagamento seguro e parcelado</p>
+                        <a href="#" class="botao-doacao">Doar via Cartão</a>
+                    </div>
+                    <div class="metodo-doacao">
+                        <div class="icone-metodo">
+                            <i class="fas fa-barcode"></i>
+                        </div>
+                        <h3>Boleto Bancário</h3>
+                        <p>Pagamento via boleto bancário</p>
+                        <a href="#" class="botao-doacao">Gerar Boleto</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <p>Segunda à sexta das 9h às 18h</p>
+                <p class="contact-highlight">Fique por dentro e entre em contato</p>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/sercristaoloja/?igsh=MTdham1kYnBmM2oyYQ%3D%3D#" class="social-icon instagram" target="_blank">Instagram</a>
+                    <a href="https://wa.me/5513988204284" class="social-icon whatsapp">WhatsApp</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Institucional</h3>
+                <ul>
+                    <li><a href="#">Trocas, cancelamento e devoluções</a></li>
+                    <li><a href="#">Prazos e entregas</a></li>
+                    <li><a href="sobrenos.html">Sobre Nós</a></li>
+                    <li><a href="#">Formas de Pagamento</a></li>
+                    <li><a href="#">Dúvidas</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Pagamento</h3>
+                <div class="payment-icons">
+                    <div class="payment-icon mastercard"></div>
+                    <div class="payment-icon visa"></div>
+                    <div class="payment-icon elo"></div>
+                    <div class="payment-icon nupay"></div>
+                    <div class="payment-icon amazon"></div>
+                    <div class="payment-icon binance"></div>
+                    <div class="payment-icon pagseguro"></div>
+                    <div class="payment-icon pix"></div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="js/main.js"></script>
+</body>
+</html>

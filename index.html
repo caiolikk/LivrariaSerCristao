@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LVSER CRISTÃO</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .carousel-container {
+            width: 100%;
+            margin: 1.5rem 0;
+            padding: 0;
+        }
+
+        .carousel-title {
+            text-align: center;
+            color: #333;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            padding-top: 1.5rem;
+        }
+
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            padding: 0.8rem 0 1.5rem 0;
+            width: 100%;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease;
+            gap: 1.5rem;
+            padding: 0 2rem;
+        }
+
+        .carousel-item {
+            flex: 0 0 240px;
+            background: white;
+            border-radius: 8px;
+            padding: 0.8rem;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carousel-item:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .carousel-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .carousel-item:hover h3 {
+            color: #DB6262;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 0.8rem;
+            transition: transform 0.4s ease;
+        }
+
+        .carousel-item h3 {
+            font-size: 1rem;
+            color: #333;
+            margin-bottom: 0.4rem;
+            line-height: 1.3;
+            transition: color 0.3s ease;
+        }
+
+        .carousel-item .author {
+            color: #666;
+            font-size: 0.85rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .carousel-item .price {
+            color: #DB6262;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-top: 0.4rem;
+            transition: transform 0.3s ease;
+        }
+
+        .carousel-item:hover .price {
+            transform: scale(1.1);
+        }
+
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: #DB6262;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 2;
+        }
+
+        .carousel-button:hover {
+            background: #DB6262;
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-button.prev {
+            left: 15px;
+        }
+
+        .carousel-button.next {
+            right: 15px;
+        }
+
+        .carousel-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 768px) {
+            .carousel-button {
+                width: 35px;
+                height: 35px;
+                font-size: 1.1rem;
+            }
+
+            .carousel-button.prev {
+                left: 8px;
+            }
+
+            .carousel-button.next {
+                right: 8px;
+            }
+
+            .carousel-track {
+                padding: 0 1rem;
+                gap: 0.8rem;
+            }
+
+            .carousel-item {
+                flex: 0 0 200px;
+            }
+
+            .carousel-item img {
+                height: 220px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo-container">
+                <img src="assets/logo-lv.png" alt="LVSER CRISTÃO" class="logo">
+            </div>
+            <div class="search-container">
+                <input type="text" class="search-bar" placeholder="PESQUISAR">
+                <button class="search-button"></button>
+            </div>
+            <button class="atacado-button">Compras no Atacado</button>
+            <button class="hamburger-menu" onclick="toggleMenu()"></button>
+        </nav>
+    </header>
+    <div class="menu-backdrop" id="menuBackdrop" onclick="closeMenu()"></div>
+    <div class="menu-overlay" id="menuOverlay">
+        <div class="menu-links">
+            <a href="index.html"><i class="fas fa-home"></i>Home</a>
+            <a href="pdfsgratis.html"><i class="fas fa-file-pdf"></i>PDF's Grátis</a>
+            <a href="doacoes.html"><i class="fas fa-hand-holding-heart"></i>Doações</a>
+            <a href="sobrenos.html"><i class="fas fa-info-circle"></i>Sobre Nós</a>
+            <div class="menu-separator"></div>
+            <a href="favoritos.html" class="favorites-button"><i class="fas fa-heart"></i>Favoritos</a>
+            <a href="login.html" class="login-button"><i class="fas fa-user"></i>Login</a>
+        </div>
+    </div>
+    <main>
+        <div class="carousel-container">
+            <h2 class="carousel-title">Livros + Vendidos</h2>
+            <div class="carousel">
+                <button class="carousel-button prev" onclick="moveCarousel(-1)">❮</button>
+                <div class="carousel-track">
+                    <div class="carousel-item">
+                        <img src="books/Prostado.jpg" alt="Prostado">
+                        <h3>Prostado</h3>
+                        <p class="author">Autor: Vários Autores</p>
+                        <p class="price">R$ 49,90</p>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="books/Nada Além das Escrituras.jpg" alt="Nada Além das Escrituras">
+                        <h3>Nada Além das Escrituras</h3>
+                        <p class="author">Autor: Vários Autores</p>
+                        <p class="price">R$ 45,90</p>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="books/Marcas Do Passado.jpg" alt="Marcas Do Passado">
+                        <h3>Marcas Do Passado</h3>
+                        <p class="author">Autor: Vários Autores</p>
+                        <p class="price">R$ 42,90</p>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="books/Jornadas pelo deserto.jpg" alt="Jornadas pelo deserto">
+                        <h3>Jornadas pelo Deserto</h3>
+                        <p class="author">Autor: Vários Autores</p>
+                        <p class="price">R$ 47,90</p>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="books/Ensinando para transformar vidas.jpg" alt="Ensinando para transformar vidas">
+                        <h3>Ensinando para Transformar Vidas</h3>
+                        <p class="author">Autor: Vários Autores</p>
+                        <p class="price">R$ 44,90</p>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="books/Elementos Fundamentais.jpg" alt="Elementos Fundamentais">
+                        <h3>Elementos Fundamentais</h3>
+                        <p class="author">Autor: Vários Autores</p>
+                        <p class="price">R$ 51,90</p>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="books/criando_uma_cultura.jpg" alt="Criando uma Cultura">
+                        <h3>Criando uma Cultura</h3>
+                        <p class="author">Autor: Vários Autores</p>
+                        <p class="price">R$ 46,90</p>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="books/Caído Mas Não Derrotado.jpg" alt="Caído Mas Não Derrotado">
+                        <h3>Caído Mas Não Derrotado</h3>
+                        <p class="author">Autor: Vários Autores</p>
+                        <p class="price">R$ 43,90</p>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="books/Aconselhamento para Mulheres.jpg" alt="Aconselhamento para Mulheres">
+                        <h3>Aconselhamento para Mulheres</h3>
+                        <p class="author">Autor: Vários Autores</p>
+                        <p class="price">R$ 48,90</p>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="books/A esposa do pastor.jpg" alt="A esposa do pastor">
+                        <h3>A Esposa do Pastor</h3>
+                        <p class="author">Autor: Vários Autores</p>
+                        <p class="price">R$ 45,90</p>
+                    </div>
+                </div>
+                <button class="carousel-button next" onclick="moveCarousel(1)">❯</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <p>Segunda à sexta das 9h às 18h</p>
+                <p class="contact-highlight">Fique por dentro e entre em contato</p>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/sercristaoloja/?igsh=MTdham1kYnBmM2oyYQ%3D%3D#" class="social-icon instagram" target="_blank">Instagram</a>
+                    <a href="#" class="social-icon whatsapp">WhatsApp</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Institucional</h3>
+                <ul>
+                    <li><a href="#">Trocas, cancelamento e devoluções</a></li>
+                    <li><a href="#">Prazos e entregas</a></li>
+                    <li><a href="sobrenos.html">Sobre Nós</a></li>
+                    <li><a href="#">Formas de Pagamento</a></li>
+                    <li><a href="#">Dúvidas</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Pagamento</h3>
+                <div class="payment-icons">
+                    <div class="payment-icon mastercard"></div>
+                    <div class="payment-icon visa"></div>
+                    <div class="payment-icon elo"></div>
+                    <div class="payment-icon nupay"></div>
+                    <div class="payment-icon amazon"></div>
+                    <div class="payment-icon binance"></div>
+                    <div class="payment-icon pagseguro"></div>
+                    <div class="payment-icon pix"></div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="js/main.js"></script>
+</body>
+</html> 

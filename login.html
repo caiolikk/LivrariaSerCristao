@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - LVSER CRISTÃO</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Lato', Verdana, Geneva, Tahoma, sans-serif;
+            background: linear-gradient(to bottom,#D76060, #944343, #712c38, #2e1a1e, #000);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .login-container {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 40px;
+            border-radius: 30px;
+            text-align: center;
+            max-width: 450px;
+            width: 100%;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        .back-button a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #4c1d25;
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 1em;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .back-button a:hover {
+            transform: scale(1.2);
+            transition: background-color 0.5s ease, transform 0.3s ease;
+        }
+
+        .logoArvore img {
+            width: 220px;
+            height: auto;
+            margin-bottom: 5%;
+            transition: transform 0.3s ease, box-shadow 0.5s ease;
+        }
+
+        .logoArvore img:hover {
+            transform: scale(1.1);
+        }
+
+        .login-form input[type="email"], .login-form input[type="password"] {
+            background-color: rgba(255, 255, 255, 0.9);
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 15px;
+            font-size: 1em;
+            box-sizing: border-box;
+            transition: transform 0.3s ease, box-shadow 0.5s ease;
+        }
+
+        .login-form input:focus {
+            background-color: #fff;
+            transform: scale(1.02);
+        }
+
+        .options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8em;
+            margin-bottom: 20px;
+        }
+
+        .options a {
+            color: #fff;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.5s ease;
+        }
+
+        .options a:hover {
+            color: #D76060;
+            text-decoration: none;
+            transform: scale(1.05);
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 15px;
+            background-color: #D76060;
+            color: #fff;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.5s ease;
+        }
+
+        .login-button:hover {
+            transform: scale(1.03);
+        }
+
+        .separator-line {
+            background-color: #fff;
+            height: 0.5px;
+            width: 85%;
+            margin: 20px auto;
+        }
+
+        .signup-link {
+            margin-top: 20px;
+            font-size: 0.9em;
+            
+        }
+
+        .signup-link a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.5s ease, transform 0.3s ease;
+        }
+
+        .signup-link a:hover {
+            color: #D76060;
+            text-decoration: none;
+        } 
+    </style>
+</head>
+<body>
+    <div class="logoArvore">
+        <a href="index.html">
+            <img src="/assets/logo-arvore.png"alt="Logo da Livraria Ser Cristão: o imagem do logo retrata de uma árvore com suas raízes enraizadas na bíblia, e de seu tronco florece junto as folhas uma cruz.">
+        </a>
+    </div>
+    <div class="back-button">
+        <a href="index.html"><</a>
+    </div>
+    <div class="login-container">
+        <div class="login-form">
+            <input type="email" placeholder="exemple@email.com">
+            <input type="password" placeholder="********">
+            <div class="options">
+                <label>
+                    <input type="checkbox"> Lembrar senha
+                </label>
+                <a href="#">Esqueceu sua senha?</a>
+            </div>
+            <button class="login-button">Entrar</button>
+            <div class="separator-line"></div>
+            <div class="signup-link">
+                Ainda não tem uma conta? <a href="#">Cadastre-se</a>
+            </div>
+        </div>
+    </div>
+    <script src="js/main.js"></script>
+</body>
+</html>

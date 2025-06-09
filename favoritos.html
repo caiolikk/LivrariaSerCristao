@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favoritos - LVSER CRISTÃO</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/mobile.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .favorites-container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .favorites-title {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 2.5rem;
+            position: relative;
+            display: inline-block;
+            margin-left: 0;
+            font-weight: 500;
+            width: 100%;
+        }
+
+        .favorites-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 100%;
+            height: 2px;
+            background-color: #e0e0e0;
+        }
+
+        .favorites-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 140px;
+            height: 2px;
+            background-color: #DB6262;
+            z-index: 1;
+        }
+
+        .favorites-content {
+            background-color: #fff;
+            width: 100%;
+            min-height: 650px;
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Estilos do grid de livros */
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(140px, 150px));
+            gap: 5rem 4rem;
+            padding: 3rem;
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        .book-card {
+            position: relative;
+            width: 100%;
+            max-width: 140px;
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .book-image-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 145%;
+            margin-bottom: 0.4rem;
+            z-index: 1;
+        }
+
+        .book-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 2px;
+        }
+
+        .book-title {
+            font-size: 0.75rem;
+            color: #333;
+            text-decoration: none;
+            line-height: 1.2;
+            margin-top: 0.2rem;
+            display: block;
+            max-width: 140px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .book-title:hover {
+            color: #DB6262;
+        }
+
+        .remove-button {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: #ff0000;
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+            z-index: 2;
+        }
+
+        .remove-button:hover {
+            background-color: #cc0000;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo-container">
+                <img src="assets/logo-lv.png" alt="LVSER CRISTÃO" class="logo">
+            </div>
+            <div class="search-container">
+                <input type="text" class="search-bar" placeholder="PESQUISAR">
+                <button class="search-button"></button>
+            </div>
+            <button class="atacado-button">Compras no Atacado</button>
+            <button class="hamburger-menu" onclick="toggleMenu()"></button>
+        </nav>
+    </header>
+    <div class="menu-backdrop" id="menuBackdrop" onclick="closeMenu()"></div>
+    <div class="menu-overlay" id="menuOverlay">
+        <div class="menu-links">
+            <a href="index.html"><i class="fas fa-home"></i>Home</a>
+            <a href="pdfsgratis.html"><i class="fas fa-file-pdf"></i>PDF's Grátis</a>
+            <a href="doacoes.html"><i class="fas fa-hand-holding-heart"></i>Doações</a>
+            <a href="sobrenos.html"><i class="fas fa-info-circle"></i>Sobre Nós</a>
+            <div class="menu-separator"></div>
+            <a href="favoritos.html" class="favorites-button"><i class="fas fa-heart"></i>Favoritos</a>
+            <a href="login.html" class="login-button"><i class="fas fa-user"></i>Login</a>
+        </div>
+    </div>
+    <main class="favorites-container">
+        <div class="favorites-content">
+            <h2 class="favorites-title">Favoritos:</h2>
+            <div class="books-grid">
+                <div class="book-card">
+                    <button class="remove-button">
+                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" preserveAspectRatio="xMidYMid meet">
+                            <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" stroke="none">
+                                <path d="M2445 3948 c-499 -32 -961 -364 -1167 -839 -147 -341 -147 -757 0 -1098 194 -448 596 -756 1084 -832 100 -15 388 -6 482 15 503 114 892 466 1044 946 44 138 62 263 62 420 0 210 -41 401 -124 584 -169 369 -508 656 -899 760 -164 44 -295 56 -482 44z m1001 -1302 c30 -30 34 -40 34 -86 0 -46 -4 -56 -34 -86 l-34 -34 -812 0 -812 0 -34 34 c-30 30 -34 40 -34 86 0 46 4 56 34 86 l34 34 812 0 812 0 34 -34z"/>
+                            </g>
+                        </svg>
+                    </button>
+                    <a href="https://www.amazon.com.br/Criando-Uma-Cultura-Cuidado-Igreja/dp/8561867566/ref=sr_1_15?dib=eyJ2IjoiMSJ9.zeGsLD4kG4rOD7ASu4EQ-bctTlUBvCpbv8n0O2Bbz9fuTzPdpzvaDZYnfwQKxzUhfPCljkQ0MEMwsVT7hVpj2mXYOYacqUbO8ysHa4NEyfOchUv1LRrZVXR9MVCptOXPaY8CCUK8MjI7clmrnpXI29gGzyywQ2qD_hbeRMR4s6mV2RzExha7V10jcDH5LuJI-Bg4YZNLlM-0efpJV_g2dd9LZy-WS6lqjX60pq20jrI.oRtYNIy98dxG2COOBLy_aMLbUUg0bNSM4csPZ2LmiME&dib_tag=se&m=A3775POY802S8M&marketplaceID=A2Q3Y263D00KWC&qid=1749184990&s=merchant-items&sr=1-15">
+                        <div class="book-image-container">
+                            <img src="books/712CDbbFGeL._SY466_.jpg" alt="Criando uma cultura de cuidado na igreja" class="book-image">
+                        </div>
+                        <span class="book-title">Criando uma cultura de cuidado na igreja</span>
+                    </a>
+                </div>
+                <div class="book-card">
+                    <button class="remove-button">
+                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" preserveAspectRatio="xMidYMid meet">
+                            <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" stroke="none">
+                                <path d="M2445 3948 c-499 -32 -961 -364 -1167 -839 -147 -341 -147 -757 0 -1098 194 -448 596 -756 1084 -832 100 -15 388 -6 482 15 503 114 892 466 1044 946 44 138 62 263 62 420 0 210 -41 401 -124 584 -169 369 -508 656 -899 760 -164 44 -295 56 -482 44z m1001 -1302 c30 -30 34 -40 34 -86 0 -46 -4 -56 -34 -86 l-34 -34 -812 0 -812 0 -34 34 c-30 30 -34 40 -34 86 0 46 4 56 34 86 l34 34 812 0 812 0 34 -34z"/>
+                            </g>
+                        </svg>
+                    </button>
+                    <a href="https://www.amazon.com.br/Elementos-Fundamentais-Processo-B%C3%ADblico-Mudan%C3%A7a/dp/8561867582/ref=sr_1_19?dib=eyJ2IjoiMSJ9.YoV_jRtgltUmcR2pDIOv-zZH92nvzJGfacq1h2lFNBvv7f3mephBGUoh1NymeSCnJi4Y7gZNmIUuqSIPtHjY_vqW_nJ3SG99vgYueNEUz1I.RzKiT9wMyuIAln_Dz1qftwOqoPNWpg_VdyYw3rZSC0w&dib_tag=se&m=A3775POY802S8M&marketplaceID=A2Q3Y263D00KWC&qid=1749187781&s=merchant-items&sr=1-19">
+                        <div class="book-image-container">
+                            <img src="books/Elementos Fundamentais.jpg" alt="Elementos fundamentais do processo bíblico" class="book-image">
+                        </div>
+                        <span class="book-title">Elementos fundamentais do processo bíblico</span>
+                    </a>
+                </div>
+                <div class="book-card">
+                    <button class="remove-button">
+                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" preserveAspectRatio="xMidYMid meet">
+                            <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" stroke="none">
+                                <path d="M2445 3948 c-499 -32 -961 -364 -1167 -839 -147 -341 -147 -757 0 -1098 194 -448 596 -756 1084 -832 100 -15 388 -6 482 15 503 114 892 466 1044 946 44 138 62 263 62 420 0 210 -41 401 -124 584 -169 369 -508 656 -899 760 -164 44 -295 56 -482 44z m1001 -1302 c30 -30 34 -40 34 -86 0 -46 -4 -56 -34 -86 l-34 -34 -812 0 -812 0 -34 34 c-30 30 -34 40 -34 86 0 46 4 56 34 86 l34 34 812 0 812 0 34 -34z"/>
+                            </g>
+                        </svg>
+                    </button>
+                    <a href="https://www.amazon.com.br/Jornadas-pelo-deserto-aprendendo-zigue-zague/dp/8577201414/ref=sr_1_22?dib=eyJ2IjoiMSJ9.YoV_jRtgltUmcR2pDIOv-zZH92nvzJGfacq1h2lFNBvv7f3mephBGUoh1NymeSCnJi4Y7gZNmIUuqSIPtHjY_vqW_nJ3SG99vgYueNEUz1I.RzKiT9wMyuIAln_Dz1qftwOqoPNWpg_VdyYw3rZSC0w&dib_tag=se&m=A3775POY802S8M&marketplaceID=A2Q3Y263D00KWC&qid=1749188352&s=merchant-items&sr=1-22">
+                        <div class="book-image-container">
+                            <img src="books/Jornadas pelo deserto.jpg" alt="Jornadas pelo deserto" class="book-image">
+                        </div>
+                        <span class="book-title">Jornadas pelo deserto</span>
+                    </a>
+                </div>
+                <div class="book-card">
+                    <button class="remove-button">
+                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" preserveAspectRatio="xMidYMid meet">
+                            <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" stroke="none">
+                                <path d="M2445 3948 c-499 -32 -961 -364 -1167 -839 -147 -341 -147 -757 0 -1098 194 -448 596 -756 1084 -832 100 -15 388 -6 482 15 503 114 892 466 1044 946 44 138 62 263 62 420 0 210 -41 401 -124 584 -169 369 -508 656 -899 760 -164 44 -295 56 -482 44z m1001 -1302 c30 -30 34 -40 34 -86 0 -46 -4 -56 -34 -86 l-34 -34 -812 0 -812 0 -34 34 c-30 30 -34 40 -34 86 0 46 4 56 34 86 l34 34 812 0 812 0 34 -34z"/>
+                            </g>
+                        </svg>
+                    </button>
+                    <a href="https://www.amazon.com.br/Esposa-do-Pastor-Gloria-Furman/dp/8581323510/ref=sr_1_20?dib=eyJ2IjoiMSJ9.YoV_jRtgltUmcR2pDIOv-zZH92nvzJGfacq1h2lFNBvv7f3mephBGUoh1NymeSCnJi4Y7gZNmIUuqSIPtHjY_vqW_nJ3SG99vgYueNEUz1I.RzKiT9wMyuIAln_Dz1qftwOqoPNWpg_VdyYw3rZSC0w&dib_tag=se&m=A3775POY802S8M&marketplaceID=A2Q3Y263D00KWC&qid=1749190529&s=merchant-items&sr=1-20">
+                        <div class="book-image-container">
+                            <img src="books/A esposa do pastor.jpg" alt="A esposa do pastor" class="book-image">
+                        </div>
+                        <span class="book-title">A esposa do pastor</span>
+                    </a>
+                </div>
+                <div class="book-card">
+                    <button class="remove-button">
+                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" preserveAspectRatio="xMidYMid meet">
+                            <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" stroke="none">
+                                <path d="M2445 3948 c-499 -32 -961 -364 -1167 -839 -147 -341 -147 -757 0 -1098 194 -448 596 -756 1084 -832 100 -15 388 -6 482 15 503 114 892 466 1044 946 44 138 62 263 62 420 0 210 -41 401 -124 584 -169 369 -508 656 -899 760 -164 44 -295 56 -482 44z m1001 -1302 c30 -30 34 -40 34 -86 0 -46 -4 -56 -34 -86 l-34 -34 -812 0 -812 0 -34 34 c-30 30 -34 40 -34 86 0 46 4 56 34 86 l34 34 812 0 812 0 34 -34z"/>
+                            </g>
+                        </svg>
+                    </button>
+                    <a href="https://www.amazon.com.br/Ensinando-Transformar-Vidas-Hendricks-Howard/dp/8535801553/ref=sr_1_17?dib=eyJ2IjoiMSJ9.YoV_jRtgltUmcR2pDIOv-zZH92nvzJGfacq1h2lFNBvv7f3mephBGUoh1NymeSCnb-zDwqS7N-C2FvpIilrr8A.RQGWDZFMeotgi0rIuhn0atnobI-40y8SLV8dA_AXK6E&dib_tag=se&m=A3775POY802S8M&marketplaceID=A2Q3Y263D00KWC&qid=1749190810&s=merchant-items&sr=1-17">
+                        <div class="book-image-container">
+                            <img src="books/Ensinando para transformar vidas.jpg" alt="Ensinando para transformar" class="book-image">
+                        </div>
+                        <span class="book-title">Ensinando para transformar</span>
+                    </a>
+                </div>
+                <div class="book-card">
+                    <button class="remove-button">
+                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" preserveAspectRatio="xMidYMid meet">
+                            <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" stroke="none">
+                                <path d="M2445 3948 c-499 -32 -961 -364 -1167 -839 -147 -341 -147 -757 0 -1098 194 -448 596 -756 1084 -832 100 -15 388 -6 482 15 503 114 892 466 1044 946 44 138 62 263 62 420 0 210 -41 401 -124 584 -169 369 -508 656 -899 760 -164 44 -295 56 -482 44z m1001 -1302 c30 -30 34 -40 34 -86 0 -46 -4 -56 -34 -86 l-34 -34 -812 0 -812 0 -34 34 c-30 30 -34 40 -34 86 0 46 4 56 34 86 l34 34 812 0 812 0 34 -34z"/>
+                            </g>
+                        </svg>
+                    </button>
+                    <a href="https://www.amazon.com.br/Ca%C3%ADdo-Derrotado-DMin-Wayne-Mack/dp/8561867264/ref=sr_1_18?dib=eyJ2IjoiMSJ9.YoV_jRtgltUmcR2pDIOv-zZH92nvzJGfacq1h2lFNBvv7f3mephBGUoh1NymeSCnb-zDwqS7N-C2FvpIilrr8A.RQGWDZFMeotgi0rIuhn0atnobI-40y8SLV8dA_AXK6E&dib_tag=se&m=A3775POY802S8M&marketplaceID=A2Q3Y263D00KWC&qid=1749191106&s=merchant-items&sr=1-18">
+                        <div class="book-image-container">
+                            <img src="books/Caído Mas Não Derrotado.jpg" alt="Caído Mas Não Derrotado" class="book-image">
+                        </div>
+                        <span class="book-title">Caído Mas Não Derrotado</span>
+                    </a>
+                </div>
+                <div class="book-card">
+                    <button class="remove-button">
+                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" preserveAspectRatio="xMidYMid meet">
+                            <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" stroke="none">
+                                <path d="M2445 3948 c-499 -32 -961 -364 -1167 -839 -147 -341 -147 -757 0 -1098 194 -448 596 -756 1084 -832 100 -15 388 -6 482 15 503 114 892 466 1044 946 44 138 62 263 62 420 0 210 -41 401 -124 584 -169 369 -508 656 -899 760 -164 44 -295 56 -482 44z m1001 -1302 c30 -30 34 -40 34 -86 0 -46 -4 -56 -34 -86 l-34 -34 -812 0 -812 0 -34 34 c-30 30 -34 40 -34 86 0 46 4 56 34 86 l34 34 812 0 812 0 34 -34z"/>
+                            </g>
+                        </svg>
+                    </button>
+                    <a href="https://www.amazon.com.br/MARCAS-DO-PASSADO-BIBLICAMENTE-INF%C3%82NCIA/dp/8561867442/ref=sr_1_21?dib=eyJ2IjoiMSJ9.YoV_jRtgltUmcR2pDIOv-zZH92nvzJGfacq1h2lFNBvv7f3mephBGUoh1NymeSCnb-zDwqS7N-C2FvpIilrr8A.RQGWDZFMeotgi0rIuhn0atnobI-40y8SLV8dA_AXK6E&dib_tag=se&m=A3775POY802S8M&marketplaceID=A2Q3Y263D00KWC&qid=1749191106&s=merchant-items&sr=1-21">
+                        <div class="book-image-container">
+                            <img src="books/Marcas Do Passado.jpg" alt="Marcas Do Passado" class="book-image">
+                        </div>
+                        <span class="book-title">Marcas Do Passado</span>
+                    </a>
+                </div>
+                <div class="book-card">
+                    <button class="remove-button">
+                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" preserveAspectRatio="xMidYMid meet">
+                            <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" stroke="none">
+                                <path d="M2445 3948 c-499 -32 -961 -364 -1167 -839 -147 -341 -147 -757 0 -1098 194 -448 596 -756 1084 -832 100 -15 388 -6 482 15 503 114 892 466 1044 946 44 138 62 263 62 420 0 210 -41 401 -124 584 -169 369 -508 656 -899 760 -164 44 -295 56 -482 44z m1001 -1302 c30 -30 34 -40 34 -86 0 -46 -4 -56 -34 -86 l-34 -34 -812 0 -812 0 -34 34 c-30 30 -34 40 -34 86 0 46 4 56 34 86 l34 34 812 0 812 0 34 -34z"/>
+                            </g>
+                        </svg>
+                    </button>
+                    <a href="https://www.amazon.com.br/PROSTRADO-ABORDAGEM-B%C3%8DBLICA-DEPRESS%C3%83O-SOLID%C3%83O/dp/8561867450/ref=sr_1_16?dib=eyJ2IjoiMSJ9.zeGsLD4kG4rOD7ASu4EQ-bctTlUBvCpbv8n0O2Bbz9fuTzPdpzvaDZYnfwQKxzUhfPCljkQ0MEMwsVT7hVpj2mXYOYacqUbO8ysHa4NEyfNViLyYkVcvfd0AFFPJGXDvCaeV5n-EUaa9XE-NkzQYAdgGzyywQ2qD_hbeRMR4s6mV2RzExha7V10jcDH5LuJI-Bg4YZNLlM-0efpJV_g2dd9LZy-WS6lqjX60pq20jrI.LDjbtN0rwDrivvjogRLgSj_fe2DN-4NaWozXY-UTVFE&dib_tag=se&m=A3775POY802S8M&marketplaceID=A2Q3Y263D00KWC&qid=1749191930&s=merchant-items&sr=1-16">
+                        <div class="book-image-container">
+                            <img src="books/Prostado.jpg" alt="Prostado" class="book-image">
+                        </div>
+                        <span class="book-title">Prostado</span>
+                    </a>
+                </div>
+                <div class="book-card">
+                    <button class="remove-button">
+                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" preserveAspectRatio="xMidYMid meet">
+                            <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" stroke="none">
+                                <path d="M2445 3948 c-499 -32 -961 -364 -1167 -839 -147 -341 -147 -757 0 -1098 194 -448 596 -756 1084 -832 100 -15 388 -6 482 15 503 114 892 466 1044 946 44 138 62 263 62 420 0 210 -41 401 -124 584 -169 369 -508 656 -899 760 -164 44 -295 56 -482 44z m1001 -1302 c30 -30 34 -40 34 -86 0 -46 -4 -56 -34 -86 l-34 -34 -812 0 -812 0 -34 34 c-30 30 -34 40 -34 86 0 46 4 56 34 86 l34 34 812 0 812 0 34 -34z"/>
+                            </g>
+                        </svg>
+                    </button>
+                    <a href="https://www.amazon.com.br/Aconselhamento-para-Mulheres-Street-Jaine/dp/8561867337/ref=sr_1_5?dib=eyJ2IjoiMSJ9.zeGsLD4kG4rOD7ASu4EQ-bctTlUBvCpbv8n0O2Bbz9fuTzPdpzvaDZYnfwQKxzUhfPCljkQ0MEMwsVT7hVpj2mXYOYacqUbO8ysHa4NEyfNViLyYkVcvfd0AFFPJGXDvCaeV5n-EUaa9XE-NkzQYAdgGzyywQ2qD_hbeRMR4s6mV2RzExha7V10jcDH5LuJI-Bg4YZNLlM-0efpJV_g2dd9LZy-WS6lqjX60pq20jrI.LDjbtN0rwDrivvjogRLgSj_fe2DN-4NaWozXY-UTVFE&dib_tag=se&m=A3775POY802S8M&marketplaceID=A2Q3Y263D00KWC&qid=1749192359&s=merchant-items&sr=1-5">
+                        <div class="book-image-container">
+                            <img src="books/Aconselhamento para Mulheres.jpg" alt="Aconselhamento para Mulheres" class="book-image">
+                        </div>
+                        <span class="book-title">Aconselhamento para Mulheres</span>
+                    </a>
+                </div>
+                <div class="book-card">
+                    <button class="remove-button">
+                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" preserveAspectRatio="xMidYMid meet">
+                            <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" stroke="none">
+                                <path d="M2445 3948 c-499 -32 -961 -364 -1167 -839 -147 -341 -147 -757 0 -1098 194 -448 596 -756 1084 -832 100 -15 388 -6 482 15 503 114 892 466 1044 946 44 138 62 263 62 420 0 210 -41 401 -124 584 -169 369 -508 656 -899 760 -164 44 -295 56 -482 44z m1001 -1302 c30 -30 34 -40 34 -86 0 -46 -4 -56 -34 -86 l-34 -34 -812 0 -812 0 -34 34 c-30 30 -34 40 -34 86 0 46 4 56 34 86 l34 34 812 0 812 0 34 -34z"/>
+                            </g>
+                        </svg>
+                    </button>
+                    <a href="https://www.amazon.com.br/Escrituras-Edward-Hindson-Howard-Organizadores/dp/8561867310/ref=sr_1_10?dib=eyJ2IjoiMSJ9.zeGsLD4kG4rOD7ASu4EQ-bctTlUBvCpbv8n0O2Bbz9fuTzPdpzvaDZYnfwQKxzUhfPCljkQ0MEMwsVT7hVpj2mXYOYacqUbO8ysHa4NEyfNViLyYkVcvfd0AFFPJGXDvCaeV5n-EUaa9XE-NkzQYAdgGzyywQ2qD_hbeRMR4s6mV2RzExha7V10jcDH5LuJI-Bg4YZNLlM-0efpJV_g2dd9LZy-WS6lqjX60pq20jrI.LDjbtN0rwDrivvjogRLgSj_fe2DN-4NaWozXY-UTVFE&dib_tag=se&m=A3775POY802S8M&marketplaceID=A2Q3Y263D00KWC&qid=1749192359&s=merchant-items&sr=1-10">
+                        <div class="book-image-container">
+                            <img src="books/Nada Além das Escrituras.jpg" alt="Nada Além das Escrituras" class="book-image">
+                        </div>
+                        <span class="book-title">Nada Além das Escrituras</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <p>Segunda à sexta das 9h às 18h</p>
+                <p class="contact-highlight">Fique por dentro e entre em contato</p>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/sercristaoloja/?igsh=MTdham1kYnBmM2oyYQ%3D%3D#" class="social-icon instagram" target="_blank">Instagram</a>
+                    <a href="#" class="social-icon whatsapp">WhatsApp</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Institucional</h3>
+                <ul>
+                    <li><a href="#">Trocas, cancelamento e devoluções</a></li>
+                    <li><a href="#">Prazos e entregas</a></li>
+                    <li><a href="sobrenos.html">Sobre Nós</a></li>
+                    <li><a href="#">Formas de Pagamento</a></li>
+                    <li><a href="#">Dúvidas</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Pagamento</h3>
+                <div class="payment-icons">
+                    <div class="payment-icon mastercard"></div>
+                    <div class="payment-icon visa"></div>
+                    <div class="payment-icon elo"></div>
+                    <div class="payment-icon nupay"></div>
+                    <div class="payment-icon amazon"></div>
+                    <div class="payment-icon binance"></div>
+                    <div class="payment-icon pagseguro"></div>
+                    <div class="payment-icon pix"></div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

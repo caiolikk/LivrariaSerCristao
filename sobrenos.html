@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nós - LVSER CRISTÃO</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/mobile.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo-container">
+                <img src="assets/logo-lv.png" alt="LVSER CRISTÃO" class="logo">
+            </div>
+            <div class="search-container">
+                <input type="text" class="search-bar" placeholder="PESQUISAR">
+                <button class="search-button"></button>
+            </div>
+            <button class="atacado-button">Compras no Atacado</button>
+            <button class="hamburger-menu" onclick="toggleMenu()"></button>
+        </nav>
+    </header>
+    <div class="menu-backdrop" id="menuBackdrop" onclick="closeMenu()"></div>
+    <div class="menu-overlay" id="menuOverlay">
+        <div class="menu-links">
+            <a href="index.html"><i class="fas fa-home"></i>Home</a>
+            <a href="pdfsgratis.html"><i class="fas fa-file-pdf"></i>PDF's Grátis</a>
+            <a href="doacoes.html"><i class="fas fa-hand-holding-heart"></i>Doações</a>
+            <a href="sobrenos.html"><i class="fas fa-info-circle"></i>Sobre Nós</a>
+            <div class="menu-separator"></div>
+            <a href="favoritos.html" class="favorites-button"><i class="fas fa-heart"></i>Favoritos</a>
+            <a href="login.html" class="login-button"><i class="fas fa-user"></i>Login</a>
+        </div>
+    </div>
+    <main>
+        <div class="main-container">
+            <h1><strong>Nossa História</strong></h1>
+            <p class="historia-texto">
+                Somos uma livraria online e temos o foco de abençoar vidas no ramo da literatura cristã,
+                começamos em 2020 onde a pandemia causou em muitas pessoas um desconforto por
+                andarem ansiosos e sem previsão para voltar a sua vida comum. Nesse momento então
+                iniciamos as nossas vendas com o objetivo de abençoar pessoas sem elas saírem da sua casa.
+            </p>
+            <div class="cards-container">
+                <div class="card">
+                    <h2><strong>missão</strong></h2>
+                    <p>Proclamar a palavra de Deus através do nosso trabalho para que o Brasil se encha do pleno conhecimento da Glória do Senhor, cumprindo nosso papel sendo luz para esse mundo.</p>
+                </div>
+                <div class="card">
+                    <h2><strong>visão</strong></h2>
+                    <p>Através de nossas lojas, queremos propor conhecimento e instrução através da literatura, artigos e produtos que difundem e instruam a respeito do evangelho por todo o país.</p>
+                </div>
+                <div class="card">
+                    <h2><strong>valores</strong></h2>
+                    <p>Nossos valores são provenientes de um só: o amor a Deus e ao próximo. A partir do amor alcançamos e mantemos nosso compromisso de pregação do evangelho.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <p>Segunda à sexta das 9h às 18h</p>
+                <p class="contact-highlight">Fique por dentro e entre em contato</p>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/sercristaoloja/?igsh=MTdham1kYnBmM2oyYQ%3D%3D#" class="social-icon instagram" target="_blank">Instagram</a>
+                    <a href="#" class="social-icon whatsapp">WhatsApp</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Institucional</h3>
+                <ul>
+                    <li><a href="#">Trocas, cancelamento e devoluções</a></li>
+                    <li><a href="#">Prazos e entregas</a></li>
+                    <li><a href="sobrenos.html">Sobre Nós</a></li>
+                    <li><a href="#">Formas de Pagamento</a></li>
+                    <li><a href="#">Dúvidas</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Pagamento</h3>
+                <div class="payment-icons">
+                    <div class="payment-icon mastercard"></div>
+                    <div class="payment-icon visa"></div>
+                    <div class="payment-icon elo"></div>
+                    <div class="payment-icon nupay"></div>
+                    <div class="payment-icon amazon"></div>
+                    <div class="payment-icon binance"></div>
+                    <div class="payment-icon pagseguro"></div>
+                    <div class="payment-icon pix"></div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

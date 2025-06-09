@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF's Grátis - LVSER CRISTÃO</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/mobile.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .pdfs-container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .pdfs-content {
+            width: 100%;
+            padding: 2rem;
+        }
+
+        .license-section {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2rem;
+        }
+
+        .books-section {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .license-title {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 2.5rem;
+            position: relative;
+            display: inline-block;
+            margin-left: 0;
+            font-weight: 500;
+            width: 100%;
+        }
+
+        .license-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 100%;
+            height: 2px;
+            background-color: #e0e0e0;
+        }
+
+        .license-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 120px;
+            height: 2px;
+            background-color: #DB6262;
+            z-index: 1;
+        }
+
+        .license-subtitle {
+            font-size: 1rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .license-description {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo-container">
+                <img src="assets/logo-lv.png" alt="LVSER CRISTÃO" class="logo">
+            </div>
+            <div class="search-container">
+                <input type="text" class="search-bar" placeholder="PESQUISAR">
+                <button class="search-button"></button>
+            </div>
+            <button class="atacado-button">Compras no Atacado</button>
+            <button class="hamburger-menu" onclick="toggleMenu()"></button>
+        </nav>
+    </header>
+    <div class="menu-backdrop" id="menuBackdrop" onclick="closeMenu()"></div>
+    <div class="menu-overlay" id="menuOverlay">
+        <div class="menu-links">
+            <a href="index.html"><i class="fas fa-home"></i>Home</a>
+            <a href="pdfsgratis.html"><i class="fas fa-file-pdf"></i>PDF's Grátis</a>
+            <a href="doacoes.html"><i class="fas fa-hand-holding-heart"></i>Doações</a>
+            <a href="sobrenos.html"><i class="fas fa-info-circle"></i>Sobre Nós</a>
+            <div class="menu-separator"></div>
+            <a href="favoritos.html" class="favorites-button"><i class="fas fa-heart"></i>Favoritos</a>
+            <a href="login.html" class="login-button"><i class="fas fa-user"></i>Login</a>
+        </div>
+    </div>
+    <main class="pdfs-container">
+        <div class="license-section">
+            <h2 class="license-title">Licença:</h2>
+            <p class="license-subtitle">Amostras grátis</p>
+            <p class="license-description">
+                Confira aqui amostras gratuitas disponibilizadas pela autora, oferecendo um trecho especial do conteúdo original para você conhecer antes de adquirir o livro completo.
+            </p>
+        </div>
+        <div class="books-section">
+            <div class="books-grid">
+                <!-- Os livros serão adicionados aqui -->
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <p>Segunda à sexta das 9h às 18h</p>
+                <p class="contact-highlight">Fique por dentro e entre em contato</p>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/sercristaoloja/?igsh=MTdham1kYnBmM2oyYQ%3D%3D#" class="social-icon instagram" target="_blank">Instagram</a>
+                    <a href="#" class="social-icon whatsapp">WhatsApp</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Institucional</h3>
+                <ul>
+                    <li><a href="#">Trocas, cancelamento e devoluções</a></li>
+                    <li><a href="#">Prazos e entregas</a></li>
+                    <li><a href="sobrenos.html">Sobre Nós</a></li>
+                    <li><a href="#">Formas de Pagamento</a></li>
+                    <li><a href="#">Dúvidas</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Pagamento</h3>
+                <div class="payment-icons">
+                    <div class="payment-icon mastercard"></div>
+                    <div class="payment-icon visa"></div>
+                    <div class="payment-icon elo"></div>
+                    <div class="payment-icon nupay"></div>
+                    <div class="payment-icon amazon"></div>
+                    <div class="payment-icon binance"></div>
+                    <div class="payment-icon pagseguro"></div>
+                    <div class="payment-icon pix"></div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
