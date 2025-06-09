@@ -1,5 +1,5 @@
 // Carousel functionality
-let currentIndex = 0;
+let currentCarouselIndex = 0; // Renomeado para evitar conflito
 let isAnimating = false;
 let autoPlayInterval;
 const itemsPerView = 4; // Number of items visible at once
@@ -7,6 +7,12 @@ const itemsPerView = 4; // Number of items visible at once
 function initCarousel() {
     const track = document.querySelector('.carousel-track');
     const items = document.querySelectorAll('.carousel-item');
+
+    if (items.length === 0) {
+        // Não há itens de carrossel, então não inicialize o carrossel
+        return;
+    }
+
     const itemWidth = items[0].offsetWidth + 32; // 32px is the gap between items
     
     // Clone first and last items for infinite scroll
@@ -24,7 +30,7 @@ function initCarousel() {
     });
     
     // Set initial position
-    currentIndex = itemsPerView;
+    currentCarouselIndex = itemsPerView;
     updateCarouselPosition();
     
     // Start auto-play
@@ -39,7 +45,7 @@ function updateCarouselPosition() {
     const items = document.querySelectorAll('.carousel-item');
     const itemWidth = items[0].offsetWidth + 32;
     
-    track.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
+    track.style.transform = `translateX(-${currentCarouselIndex * itemWidth}px)`;
 }
 
 function moveCarousel(direction) {
@@ -50,7 +56,7 @@ function moveCarousel(direction) {
     const itemWidth = items[0].offsetWidth + 32;
     
     isAnimating = true;
-    currentIndex += direction;
+    currentCarouselIndex += direction;
     
     // Smooth transition
     track.style.transition = 'transform 0.5s ease';
@@ -60,13 +66,13 @@ function moveCarousel(direction) {
     setTimeout(() => {
         const totalItems = items.length;
         
-        if (currentIndex <= 0) {
+        if (currentCarouselIndex <= 0) {
             track.style.transition = 'none';
-            currentIndex = totalItems - (itemsPerView * 2);
+            currentCarouselIndex = totalItems - (itemsPerView * 2);
             updateCarouselPosition();
-        } else if (currentIndex >= totalItems - itemsPerView) {
+        } else if (currentCarouselIndex >= totalItems - itemsPerView) {
             track.style.transition = 'none';
-            currentIndex = itemsPerView;
+            currentCarouselIndex = itemsPerView;
             updateCarouselPosition();
         }
         
@@ -102,32 +108,37 @@ function stopAutoPlay() {
 
 // Initialize carousel when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    initCarousel();
-    
-    // Pause auto-play on hover
-    const carousel = document.querySelector('.carousel');
-    carousel.addEventListener('mouseenter', stopAutoPlay);
-    carousel.addEventListener('mouseleave', startAutoPlay);
-    
-    // Add touch support for mobile
-    let touchStartX = 0;
-    let touchEndX = 0;
-    
-    carousel.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-    });
-    
-    carousel.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-    });
-    
-    function handleSwipe() {
-        const swipeThreshold = 50;
-        if (touchEndX < touchStartX - swipeThreshold) {
-            moveCarousel(1); // Swipe left
-        } else if (touchEndX > touchStartX + swipeThreshold) {
-            moveCarousel(-1); // Swipe right
+    const carouselTrack = document.querySelector('.carousel-track');
+    if (carouselTrack) {
+        initCarousel();
+
+        // Pause auto-play on hover
+        const carousel = document.querySelector('.carousel');
+        if (carousel) { // Adicionado verificação para garantir que o carrossel exista
+            carousel.addEventListener('mouseenter', stopAutoPlay);
+            carousel.addEventListener('mouseleave', startAutoPlay);
+
+            // Add touch support for mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            carousel.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+
+            carousel.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                if (touchEndX < touchStartX - swipeThreshold) {
+                    moveCarousel(1); // Swipe left
+                } else if (touchEndX > touchStartX + swipeThreshold) {
+                    moveCarousel(-1); // Swipe right
+                }
+            }
         }
     }
 });
@@ -136,20 +147,24 @@ document.addEventListener('DOMContentLoaded', () => {
 function toggleMenu() {
     const menuOverlay = document.getElementById('menuOverlay');
     const menuBackdrop = document.getElementById('menuBackdrop');
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
     const body = document.body;
 
     menuOverlay.classList.toggle('active');
     menuBackdrop.classList.toggle('active');
+    hamburgerMenu.classList.toggle('active');
     body.style.overflow = menuOverlay.classList.contains('active') ? 'hidden' : '';
 }
 
 function closeMenu() {
     const menuOverlay = document.getElementById('menuOverlay');
     const menuBackdrop = document.getElementById('menuBackdrop');
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
     const body = document.body;
 
     menuOverlay.classList.remove('active');
     menuBackdrop.classList.remove('active');
+    hamburgerMenu.classList.remove('active');
     body.style.overflow = '';
 }
 
@@ -169,6 +184,12 @@ document.addEventListener('DOMContentLoaded', () => {
             closeMenu();
         });
     });
+
+    // Add click event listener to menu backdrop
+    const menuBackdrop = document.getElementById('menuBackdrop');
+    if (menuBackdrop) {
+        menuBackdrop.addEventListener('click', closeMenu);
+    }
 });
 
 // Favorites functionality
@@ -184,69 +205,4 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
-});
-
-// Funções do Carrossel
-let currentPosition = 0;
-const track = document.querySelector('.carousel-track');
-const items = document.querySelectorAll('.carousel-item');
-const itemWidth = items[0].offsetWidth;
-const gap = parseInt(getComputedStyle(items[0]).marginRight);
-const initialItemsPerView = Math.floor(window.innerWidth / (itemWidth + gap));
-const maxPosition = items.length - initialItemsPerView;
-
-function updateCarouselButtons() {
-    const prevButton = document.querySelector('.carousel-button.prev');
-    const nextButton = document.querySelector('.carousel-button.next');
-
-    prevButton.disabled = currentPosition === 0;
-    nextButton.disabled = currentPosition >= maxPosition;
-
-    prevButton.style.opacity = prevButton.disabled ? '0.5' : '1';
-    nextButton.style.opacity = nextButton.disabled ? '0.5' : '1';
-}
-
-function moveCarousel(direction) {
-    const newPosition = currentPosition + direction;
-    
-    if (newPosition >= 0 && newPosition <= maxPosition) {
-        currentPosition = newPosition;
-        const offset = -(currentPosition * (itemWidth + gap));
-        track.style.transform = `translateX(${offset}px)`;
-        updateCarouselButtons();
-    }
-}
-
-// Inicialização
-document.addEventListener('DOMContentLoaded', () => {
-    updateCarouselButtons();
-
-    // Ajuste do carrossel em redimensionamento
-    window.addEventListener('resize', () => {
-        const newItemWidth = items[0].offsetWidth;
-        const newGap = parseInt(getComputedStyle(items[0]).marginRight);
-        const newItemsPerView = Math.floor(window.innerWidth / (newItemWidth + newGap));
-        const newMaxPosition = items.length - newItemsPerView;
-
-        if (currentPosition > newMaxPosition) {
-            currentPosition = newMaxPosition;
-            const offset = -(currentPosition * (newItemWidth + newGap));
-            track.style.transform = `translateX(${offset}px)`;
-        }
-
-        updateCarouselButtons();
-    });
-
-    // Fechar menu ao clicar em um link
-    const menuLinks = document.querySelectorAll('.menu-links a');
-    menuLinks.forEach(link => {
-        link.addEventListener('click', closeMenu);
-    });
-
-    // Fechar menu ao pressionar ESC
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            closeMenu();
-        }
-    });
 }); 

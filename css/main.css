@@ -171,6 +171,15 @@ header {
     z-index: 1000;
     width: 40px;
     height: 40px;
+    transition: transform 0.3s ease;
+}
+
+.hamburger-menu:hover {
+    transform: scale(1.1);
+}
+
+.hamburger-menu:active {
+    transform: scale(0.95);
 }
 
 .hamburger-menu::before {
@@ -181,6 +190,11 @@ header {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+    transition: transform 0.3s ease;
+}
+
+.hamburger-menu.active::before {
+    transform: rotate(90deg);
 }
 
 .menu-overlay {
@@ -194,12 +208,16 @@ header {
     z-index: 999;
     padding-top: 60px;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
-    display: none;
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    transition: right 0.3s ease, visibility 0.3s ease, opacity 0.3s ease;
 }
 
 .menu-overlay.active {
     right: 0;
-    display: block;
+    visibility: visible;
+    opacity: 1;
 }
 
 .menu-links {
@@ -341,11 +359,14 @@ header {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 998;
-    display: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .menu-backdrop.active {
-    display: block;
+    opacity: 1;
+    visibility: visible;
 }
 
 /* Layout principal */
@@ -994,12 +1015,14 @@ img {
     .menu-overlay {
         width: 100%;
         right: -100%;
-        display: none;
+        visibility: hidden;
+        opacity: 0;
     }
 
     .menu-overlay.active {
         right: 0;
-        display: block;
+        visibility: visible;
+        opacity: 1;
     }
 
     .search-container {
