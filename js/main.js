@@ -136,23 +136,21 @@ document.addEventListener('DOMContentLoaded', () => {
 function toggleMenu() {
     const menuOverlay = document.getElementById('menuOverlay');
     const menuBackdrop = document.getElementById('menuBackdrop');
-    const isOpen = menuOverlay.classList.contains('active');
-    
-    if (isOpen) {
-        closeMenu();
-    } else {
-        menuOverlay.classList.add('active');
-        menuBackdrop.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
-    }
+    const body = document.body;
+
+    menuOverlay.classList.toggle('active');
+    menuBackdrop.classList.toggle('active');
+    body.style.overflow = menuOverlay.classList.contains('active') ? 'hidden' : '';
 }
 
 function closeMenu() {
     const menuOverlay = document.getElementById('menuOverlay');
     const menuBackdrop = document.getElementById('menuBackdrop');
+    const body = document.body;
+
     menuOverlay.classList.remove('active');
     menuBackdrop.classList.remove('active');
-    document.body.style.overflow = ''; // Restore scrolling
+    body.style.overflow = '';
 }
 
 // Add keyboard support for menu
@@ -186,4 +184,69 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+});
+
+// Funções do Carrossel
+let currentPosition = 0;
+const track = document.querySelector('.carousel-track');
+const items = document.querySelectorAll('.carousel-item');
+const itemWidth = items[0].offsetWidth;
+const gap = parseInt(getComputedStyle(items[0]).marginRight);
+const initialItemsPerView = Math.floor(window.innerWidth / (itemWidth + gap));
+const maxPosition = items.length - initialItemsPerView;
+
+function updateCarouselButtons() {
+    const prevButton = document.querySelector('.carousel-button.prev');
+    const nextButton = document.querySelector('.carousel-button.next');
+
+    prevButton.disabled = currentPosition === 0;
+    nextButton.disabled = currentPosition >= maxPosition;
+
+    prevButton.style.opacity = prevButton.disabled ? '0.5' : '1';
+    nextButton.style.opacity = nextButton.disabled ? '0.5' : '1';
+}
+
+function moveCarousel(direction) {
+    const newPosition = currentPosition + direction;
+    
+    if (newPosition >= 0 && newPosition <= maxPosition) {
+        currentPosition = newPosition;
+        const offset = -(currentPosition * (itemWidth + gap));
+        track.style.transform = `translateX(${offset}px)`;
+        updateCarouselButtons();
+    }
+}
+
+// Inicialização
+document.addEventListener('DOMContentLoaded', () => {
+    updateCarouselButtons();
+
+    // Ajuste do carrossel em redimensionamento
+    window.addEventListener('resize', () => {
+        const newItemWidth = items[0].offsetWidth;
+        const newGap = parseInt(getComputedStyle(items[0]).marginRight);
+        const newItemsPerView = Math.floor(window.innerWidth / (newItemWidth + newGap));
+        const newMaxPosition = items.length - newItemsPerView;
+
+        if (currentPosition > newMaxPosition) {
+            currentPosition = newMaxPosition;
+            const offset = -(currentPosition * (newItemWidth + newGap));
+            track.style.transform = `translateX(${offset}px)`;
+        }
+
+        updateCarouselButtons();
+    });
+
+    // Fechar menu ao clicar em um link
+    const menuLinks = document.querySelectorAll('.menu-links a');
+    menuLinks.forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+
+    // Fechar menu ao pressionar ESC
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeMenu();
+        }
+    });
 }); 
